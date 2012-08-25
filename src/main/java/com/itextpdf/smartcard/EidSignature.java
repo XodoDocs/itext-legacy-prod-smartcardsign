@@ -62,8 +62,6 @@ public class EidSignature implements ExternalSignature {
 	protected SmartCardWithKey card;
 	/** You need to pick a digest algorithm for the encryption. */
 	protected String hashAlgorithm;
-	/** The algorithm used for encryption (this will depend on the card). */
-	protected String encryptionAlgorithm;
 	/** You can pick a provider to create the digest. */
 	protected String provider;
 	
@@ -71,14 +69,11 @@ public class EidSignature implements ExternalSignature {
 	 * Creates an EidSignature object that can be passed to MakeSignature.
 	 * @param card		a SmartCardWithKey instance
 	 * @param hashAlgorithm	a digest algorithm (e.g. "SHA256")
-	 * @param hashAlgorithm	an encryption algorithm (e.g. "RSA")
 	 * @param provider	a provider (e.g. "BC")
 	 */
-	public EidSignature(SmartCardWithKey card, String hashAlgorithm,
-			String encryptionAlgorithm, String provider) {
+	public EidSignature(SmartCardWithKey card, String hashAlgorithm, String provider) {
 		this.card = card;
 		this.hashAlgorithm = hashAlgorithm;
-		this.encryptionAlgorithm = encryptionAlgorithm;
 		this.provider = provider;
 	}
 	
@@ -103,7 +98,7 @@ public class EidSignature implements ExternalSignature {
 	 * @see com.itextpdf.text.pdf.security.ExternalSignature#getEncryptionAlgorithm()
 	 */
 	public String getEncryptionAlgorithm() {
-		return encryptionAlgorithm;
+		return card.getEncryptionAlgorithm();
 	}
 
 	/**

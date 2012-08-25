@@ -54,24 +54,41 @@ import javax.swing.JPasswordField;
  */
 public class PinDialog implements PinProvider {
 	
+	/** The number of digits needed for the PIN. */
+	protected int digits;
+	
+	/**
+	 * Creates a PinDialog object.
+	 * @param	digits	the number of digits needed for the PIN.
+	 */
+	public PinDialog(int digits) {
+		this.digits = digits;
+	}
+	
 	/**
 	 * Creates a dialog box that will ask for a pin.
 	 * @param retries	the number of retries left
 	 */
 	public char[] getPin(int retries) throws CardException {
-		JPasswordField pinfield = new JPasswordField();
-		JLabel label;
+		if (retries == 0) {
+			JOptionPane.showMessageDialog(null, "Your PIN code was made invalid!", "No tries left", JOptionPane.ERROR_MESSAGE);
+			return new char[]{};
+		}
+		String labeltext = "Please enter your PIN:";
 		if (retries > 0)
-			label = new JLabel("Please enter your PIN (" + retries + " retries left):");
-		else if (retries != 0)
-			label = new JLabel("Please enter your PIN:");
-		else
-			throw new CardException("PIN code invalid; no retries left");
+			labeltext += " (" + retries + " retries left):";
+		JPasswordField pinfield = new JPasswordField();
+		JLabel label = new JLabel(labeltext);
 		int response = JOptionPane.showConfirmDialog(null,
 				  new Object[]{label, pinfield}, "PIN code",
 				  JOptionPane.OK_CANCEL_OPTION);
 		if (response == JOptionPane.OK_OPTION) {
-			return pinfield.getPassword();
+			char[] pin = pinfield.getPassword();
+			if (pin.length != digits) {
+				JOptionPane.showMessageDialog(null, "You need to enter " + digits + " digits!", "Wrong PIN", JOptionPane.ERROR_MESSAGE);
+				return getPin(retries);
+			}
+			return pin;
 		}
 		return new char[]{};
 	}

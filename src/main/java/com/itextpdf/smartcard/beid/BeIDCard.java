@@ -68,7 +68,7 @@ public class BeIDCard extends SmartCardWithKey {
 	 * @param	cardTerminal	the card terminal with the Belgian eID. 
 	 */
 	public BeIDCard(CardTerminal cardTerminal) throws CardException {
-		super(cardTerminal, BeIDCertificates.NON_REPUDIATION_KEY_ID);
+		super(cardTerminal, BeIDCertificates.NON_REPUDIATION_KEY_ID, "RSA");
 	}
 	
 	/**

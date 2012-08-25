@@ -74,6 +74,9 @@ public class SmartCardWithKey extends SmartCard {
 	/** The id for the key that will be used to sign. */
 	protected byte keyId;
 	
+	/** The encryption algorithm (e.g. "RSA"). */
+	protected String encryptionAlgorithm;
+	
 	/** The pin provider (if necessary) */
 	protected PinProvider pinProvider;
 	
@@ -87,11 +90,22 @@ public class SmartCardWithKey extends SmartCard {
 	 * Creates a SmartCardWithKey instance.
 	 * @param cardTerminal	the terminal holding the card
 	 * @param keyId		the id for the key that will be used for signing
+	 * @param encryptionAlgorithm	the encryption algorithm used for the key
 	 * @throws CardException
 	 */
-	public SmartCardWithKey(CardTerminal cardTerminal, byte keyId) throws CardException {
+	public SmartCardWithKey(CardTerminal cardTerminal, byte keyId, String encryptionAlgorithm)
+		throws CardException {
 		super(cardTerminal);
 		this.keyId = keyId;
+		this.encryptionAlgorithm = encryptionAlgorithm;
+	}
+	
+	/**
+	 * Returns the encryption algorithm used for the private key.
+	 * @return	an encryption algorithm (e.g. "RSA")
+	 */
+	public String getEncryptionAlgorithm() {
+		return encryptionAlgorithm;
 	}
 	
 	/**
@@ -180,9 +194,12 @@ public class SmartCardWithKey extends SmartCard {
 				LOGGER.info("start verifying PIN on the pin pad");
 				responseAPDU = PinVerification.verifyPinStart(this, verifyPinStartCommand);
 			}
-			else {
+			else if (pinProvider != null) {
 				LOGGER.info("verifying PIN using pin provider");
 				responseAPDU = PinVerification.verifyPin(this, pinProvider, retries);
+			}
+			else {
+				throw new CardException("Unable to retrieve PIN");
 			}
 			sw = responseAPDU.getSW();
 			if (sw != IsoIec7816.SW_NO_FURTHER_QUALIFICATION) {

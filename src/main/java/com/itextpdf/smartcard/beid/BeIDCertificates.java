@@ -52,6 +52,7 @@ import java.util.List;
 
 import javax.smartcardio.CardException;
 
+import com.itextpdf.smartcard.SmartCardWithKey;
 import com.itextpdf.text.log.Logger;
 import com.itextpdf.text.log.LoggerFactory;
 
@@ -90,7 +91,7 @@ public class BeIDCertificates {
 	 * @throws CardException
 	 * @throws IOException
 	 */
-	public static Certificate[] getSignCertificateChain(BeIDCard card) throws CertificateException, CardException, IOException{
+	public static Certificate[] getSignCertificateChain(SmartCardWithKey card) throws CertificateException, CardException, IOException{
 		LOGGER.info("creating sign certificate chain...");
 		List<X509Certificate> signCertificateChain = new LinkedList<X509Certificate>();
 		
