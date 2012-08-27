@@ -82,6 +82,13 @@ public class BeIDCertificates {
 	public static final byte[] ROOT_CERT_FILE_ID = new byte[] { 0x3F, 0x00,
 		(byte) 0xDF, 0x00, 0x50, 0x3B };
 
+	/** Certificate file ID for the authentication. */
+	public static final byte[] AUTHN_CERT_FILE_ID = new byte[] { 0x3F, 0x00,
+		(byte) 0xDF, 0x00, 0x50, 0x38 };
+
+	/** Certificate file ID for the national registry certificate. */
+	public static final byte[] RRN_CERT_FILE_ID = new byte[] { 0x3F, 0x00,
+		(byte) 0xDF, 0x00, 0x50, 0x3C };
 	
 	/**
 	 * Generates a certificate chain that can be used for signing
