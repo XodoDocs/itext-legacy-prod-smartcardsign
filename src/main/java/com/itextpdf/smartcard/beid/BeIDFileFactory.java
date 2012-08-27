@@ -52,6 +52,7 @@ import java.util.Map;
 
 import javax.smartcardio.CardException;
 
+import com.itextpdf.smartcard.SmartCard;
 import com.itextpdf.smartcard.beid.pojos.AddressPojo;
 import com.itextpdf.smartcard.beid.pojos.IdentityPojo;
 import com.itextpdf.smartcard.beid.pojos.PhotoPojo;
@@ -111,7 +112,7 @@ public class BeIDFileFactory {
 	 * @throws CardException
 	 * @throws IOException
 	 */
-	public static IdentityPojo getIdentity(BeIDCard card) throws CardException, IOException {
+	public static IdentityPojo getIdentity(SmartCard card) throws CardException, IOException {
 		LOGGER.info("Get identity...");
 		IdentityPojo file = new IdentityPojo();
 		byte[] data = card.readFile(IDENTITY_FILE_ID);
@@ -159,7 +160,7 @@ public class BeIDFileFactory {
 	 * @throws CardException
 	 * @throws IOException
 	 */
-	public static AddressPojo getAddress(BeIDCard card) throws CardException, IOException {
+	public static AddressPojo getAddress(SmartCard card) throws CardException, IOException {
 		AddressPojo file = new AddressPojo();
 		byte[] data = card.readFile(ADDRESS_FILE_ID);
 		Map<Byte, String> map = SIMPLETLVPARSER.parse(data);
@@ -180,7 +181,7 @@ public class BeIDFileFactory {
 	 * @throws CardException
 	 * @throws IOException
 	 */
-	public static PhotoPojo getPhoto(BeIDCard card) throws CardException, IOException {
+	public static PhotoPojo getPhoto(SmartCard card) throws CardException, IOException {
 		PhotoPojo file = new PhotoPojo();
 		file.setPhoto(card.readFile(PHOTO_FILE_ID));
 		return file;
