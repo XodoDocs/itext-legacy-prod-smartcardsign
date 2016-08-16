@@ -44,6 +44,16 @@
  */
 package com.itextpdf.smartcard;
 
+import com.itextpdf.smartcard.util.DigestAlgorithms;
+import com.itextpdf.smartcard.util.IsoIec7816;
+import com.itextpdf.smartcard.util.PinVerification;
+import com.itextpdf.smartcard.util.SmartCardIO;
+
+import javax.smartcardio.CardException;
+import javax.smartcardio.CardTerminal;
+import javax.smartcardio.CommandAPDU;
+import javax.smartcardio.ResponseAPDU;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -52,17 +62,8 @@ import java.security.cert.CertificateFactory;
 import java.security.cert.X509Certificate;
 import java.util.Arrays;
 
-import javax.smartcardio.CardException;
-import javax.smartcardio.CardTerminal;
-import javax.smartcardio.CommandAPDU;
-import javax.smartcardio.ResponseAPDU;
-
-import com.itextpdf.smartcard.util.DigestAlgorithms;
-import com.itextpdf.smartcard.util.IsoIec7816;
-import com.itextpdf.smartcard.util.PinVerification;
-import com.itextpdf.smartcard.util.SmartCardIO;
-import com.itextpdf.text.log.Logger;
-import com.itextpdf.text.log.LoggerFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * A generic smart card object for smart cards containing a key that can be used for signing.

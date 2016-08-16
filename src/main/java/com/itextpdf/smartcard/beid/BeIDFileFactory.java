@@ -44,6 +44,15 @@
  */
 package com.itextpdf.smartcard.beid;
 
+import com.itextpdf.smartcard.SmartCard;
+import com.itextpdf.smartcard.beid.pojos.AddressPojo;
+import com.itextpdf.smartcard.beid.pojos.IdentityPojo;
+import com.itextpdf.smartcard.beid.pojos.PhotoPojo;
+import com.itextpdf.smartcard.util.tlv.EidTLVParser;
+import com.itextpdf.smartcard.util.tlv.SimpleTLVParser;
+
+import javax.smartcardio.CardException;
+
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -51,16 +60,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
 
-import javax.smartcardio.CardException;
-
-import com.itextpdf.smartcard.SmartCard;
-import com.itextpdf.smartcard.beid.pojos.AddressPojo;
-import com.itextpdf.smartcard.beid.pojos.IdentityPojo;
-import com.itextpdf.smartcard.beid.pojos.PhotoPojo;
-import com.itextpdf.smartcard.util.tlv.EidTLVParser;
-import com.itextpdf.smartcard.util.tlv.SimpleTLVParser;
-import com.itextpdf.text.log.Logger;
-import com.itextpdf.text.log.LoggerFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Factory producing objects containing personal data about the owner of a Belgian eID card.

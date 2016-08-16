@@ -44,18 +44,17 @@
  */
 package com.itextpdf.smartcard;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.smartcardio.CardException;
 import javax.smartcardio.CardTerminal;
 import javax.smartcardio.CardTerminals;
 import javax.smartcardio.TerminalFactory;
 
-import com.itextpdf.text.log.Logger;
-import com.itextpdf.text.log.LoggerFactory;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Class that creates a list of all connected card readers and

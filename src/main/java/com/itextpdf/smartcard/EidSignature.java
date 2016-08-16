@@ -44,20 +44,20 @@
  */
 package com.itextpdf.smartcard;
 
-import java.io.IOException;
-import java.security.GeneralSecurityException;
-import java.security.MessageDigest;
+import com.itextpdf.signatures.IExternalSignature;
 
 import javax.smartcardio.CardException;
 
-import com.itextpdf.text.pdf.security.ExternalSignature;
+import java.io.IOException;
+import java.security.GeneralSecurityException;
+import java.security.MessageDigest;
 
 /**
  * Implementation of the ExternalSignature interface.
  * Instead of signing using the PdfPKCS7 class,
  * we'll create the signature on a smart card.
  */
-public class EidSignature implements ExternalSignature {
+public class EidSignature implements IExternalSignature {
 
 	/** You need a SmartCardWithKey object to sign. */
 	protected SmartCardWithKey card;
@@ -80,7 +80,7 @@ public class EidSignature implements ExternalSignature {
 	
 	/**
 	 * This method will do the actual signing.
-	 * @see com.itextpdf.text.pdf.security.ExternalSignature#sign(byte[])
+	 * @see com.itextpdf.signatures.IExternalSignature#sign(byte[])
 	 */
 	public byte[] sign(byte[] digest) throws GeneralSecurityException {
 		try {
@@ -96,7 +96,7 @@ public class EidSignature implements ExternalSignature {
 
 	/**
 	 * Getter for the encryption algorithm.
-	 * @see com.itextpdf.text.pdf.security.ExternalSignature#getEncryptionAlgorithm()
+	 * @see com.itextpdf.signatures.IExternalSignature#getEncryptionAlgorithm()
 	 */
 	public String getEncryptionAlgorithm() {
 		return card.getEncryptionAlgorithm();
@@ -104,7 +104,7 @@ public class EidSignature implements ExternalSignature {
 
 	/**
 	 * Getter for the hashing algorithm.
-	 * @see com.itextpdf.text.pdf.security.ExternalSignature#getHashAlgorithm()
+	 * @see com.itextpdf.signatures.IExternalSignature#getHashAlgorithm()
 	 */
 	public String getHashAlgorithm() {
 		return hashAlgorithm;

@@ -44,14 +44,14 @@
  */
 package com.itextpdf.smartcard;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.smartcardio.Card;
 import javax.smartcardio.CardException;
 
-import com.itextpdf.text.log.Logger;
-import com.itextpdf.text.log.LoggerFactory;
+import java.util.HashMap;
+import java.util.Map;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Lists the features available on the smart card reader with the smart card.

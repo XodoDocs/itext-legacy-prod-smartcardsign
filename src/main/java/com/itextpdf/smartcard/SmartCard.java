@@ -44,8 +44,7 @@
  */
 package com.itextpdf.smartcard;
 
-import java.io.IOException;
-import java.util.Arrays;
+import com.itextpdf.smartcard.util.SmartCardIO;
 
 import javax.smartcardio.ATR;
 import javax.smartcardio.Card;
@@ -54,9 +53,11 @@ import javax.smartcardio.CardException;
 import javax.smartcardio.CardNotPresentException;
 import javax.smartcardio.CardTerminal;
 
-import com.itextpdf.smartcard.util.SmartCardIO;
-import com.itextpdf.text.log.Logger;
-import com.itextpdf.text.log.LoggerFactory;
+import java.io.IOException;
+import java.util.Arrays;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * A Generic SmartCard object.
@@ -84,7 +85,6 @@ public class SmartCard {
 	 * @param cardTerminal
 	 *            the CardTerminal which holds the smartcard
 	 * @throws CardException
-	 * @throws NoValidCardException 
 	 */
 	public SmartCard(CardTerminal cardTerminal) throws CardException {
 		if (cardTerminal.isCardPresent()) {
@@ -164,7 +164,6 @@ public class SmartCard {
 	
 	/**
 	 * Returns a pattern that is specific for the smart card implementation.
-	 * @param	a specific pattern or null for the generic SmartCard object.
 	 */
 	public byte[] getPattern() {
 		return null;
@@ -172,7 +171,6 @@ public class SmartCard {
 
 	/**
 	 * Returns a mask for the pattern that is specific for the smart card implementation.
-	 * @param	a specific pattern or null if the pattern needs to be an exact match.
 	 */
 	public byte[] getMask() {
 		return null;

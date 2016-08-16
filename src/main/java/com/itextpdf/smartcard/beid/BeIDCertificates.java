@@ -44,6 +44,10 @@
  */
 package com.itextpdf.smartcard.beid;
 
+import com.itextpdf.smartcard.SmartCardWithKey;
+
+import javax.smartcardio.CardException;
+
 import java.io.IOException;
 import java.security.cert.Certificate;
 import java.security.cert.CertificateException;
@@ -51,11 +55,8 @@ import java.security.cert.X509Certificate;
 import java.util.LinkedList;
 import java.util.List;
 
-import javax.smartcardio.CardException;
-
-import com.itextpdf.smartcard.SmartCardWithKey;
-import com.itextpdf.text.log.Logger;
-import com.itextpdf.text.log.LoggerFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * The Belgian eID card can be used to add digital signatures using specific certificates.

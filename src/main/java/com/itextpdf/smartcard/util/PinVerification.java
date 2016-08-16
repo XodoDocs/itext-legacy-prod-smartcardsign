@@ -67,19 +67,20 @@
  */
 package com.itextpdf.smartcard.util;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.util.Arrays;
+import com.itextpdf.smartcard.Features;
+import com.itextpdf.smartcard.PinProvider;
+import com.itextpdf.smartcard.SmartCardWithKey;
 
 import javax.smartcardio.CardException;
 import javax.smartcardio.CommandAPDU;
 import javax.smartcardio.ResponseAPDU;
 
-import com.itextpdf.smartcard.Features;
-import com.itextpdf.smartcard.PinProvider;
-import com.itextpdf.smartcard.SmartCardWithKey;
-import com.itextpdf.text.log.Logger;
-import com.itextpdf.text.log.LoggerFactory;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.util.Arrays;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Class that handles the pin verification.
